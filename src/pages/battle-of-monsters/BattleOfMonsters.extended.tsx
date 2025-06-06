@@ -6,11 +6,14 @@ import { useAppDispatch } from '../../app/hooks';
 import { MonsterBattleCard } from '../../components/monster-battle-card/MonsterBattleCard.extended';
 import { MonstersList } from '../../components/monsters-list/MonstersList.extended';
 import { Title } from '../../components/title/Title';
+import { WinnerDisplay } from '../../components/winner-display/WinnerDisplay.extended';
 import { fetchMonstersData } from '../../reducers/monsters/monsters.actions';
+import { fetchBattleWins, setRandomMonster, setWinner } from '../../reducers/monsters/monsters.actions.extended';
 import {
   selectMonsters,
   selectSelectedMonster,
 } from '../../reducers/monsters/monsters.selectors';
+import { monsterWins, randomMonsters, selectRandomMonster } from '../../reducers/monsters/monsters.selectors.extended';
 import {
   BattleSection,
   PageContainer,
@@ -22,13 +25,34 @@ const BattleOfMonsters = () => {
 
   const monsters = useSelector(selectMonsters);
   const selectedMonster = useSelector(selectSelectedMonster);
+  const computerMonster = useSelector(selectRandomMonster);
+  const winner = useSelector(monsterWins);
 
   useEffect(() => {
     dispatch(fetchMonstersData());
   }, []);
 
+  useEffect(() => {
+    if (selectedMonster) {
+      const randomMonster = useSelector(randomMonsters);
+      if (randomMonster) {
+        dispatch(setRandomMonster(randomMonster));
+      }
+    } else {
+      dispatch(setRandomMonster(null));
+      dispatch(setWinner(null));
+    }
+  }, [selectedMonster]);
+
   const handleStartBattleClick = () => {
-    // Fight!
+    if (selectedMonster && computerMonster) {
+      dispatch(
+        fetchBattleWins({
+          monster1Id: selectedMonster.id,
+          monster2Id: computerMonster.id,
+        }),
+      );
+    }
   };
 
   return (
@@ -37,16 +61,25 @@ const BattleOfMonsters = () => {
 
       <MonstersList monsters={monsters} />
 
+      {winner && (
+        <WinnerDisplay text={winner.winner?.name || (winner.tie ? "It's a tie" : '')} />
+      )}
+
       <BattleSection>
         <MonsterBattleCard
-          title={selectedMonster?.name || 'Player'}></MonsterBattleCard>
+          monster={selectedMonster}
+          title={selectedMonster?.name || 'Player'}
+        />
         <StartBattleButton
           data-testid="start-battle-button"
-          disabled={selectedMonster === null}
+          disabled={!selectedMonster || !computerMonster}
           onClick={handleStartBattleClick}>
           Start Battle
         </StartBattleButton>
-        <MonsterBattleCard title="Computer"></MonsterBattleCard>
+        <MonsterBattleCard
+          monster={computerMonster}
+          title={computerMonster?.name || 'Computer'}
+        />
       </BattleSection>
     </PageContainer>
   );
