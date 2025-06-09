@@ -8,6 +8,6 @@ export const fetchBattleWins = createAsyncThunk<Battle, Players>(
   MonsterServiceExtended.battle
 );
 
-export const setRandomMonster = createAction<Monster>('monsters/setRandomMonster');
+export const setRandomMonster = createAction<Monster | null>('monsters/setRandomMonster');
 
 export const setWinner = createAction<Battle | null>('monsters/setWinner');

@@ -13,7 +13,7 @@ import {
   selectMonsters,
   selectSelectedMonster,
 } from '../../reducers/monsters/monsters.selectors';
-import { monsterWins, randomMonsters, selectRandomMonster } from '../../reducers/monsters/monsters.selectors.extended';
+import { monsterWins, selectRandomMonster, getRandomMonster } from '../../reducers/monsters/monsters.selectors.extended';
 import {
   BattleSection,
   PageContainer,
@@ -34,15 +34,13 @@ const BattleOfMonsters = () => {
 
   useEffect(() => {
     if (selectedMonster) {
-      const randomMonster = useSelector(randomMonsters);
-      if (randomMonster) {
-        dispatch(setRandomMonster(randomMonster));
-      }
+      const randomMonster = getRandomMonster(monsters, selectedMonster);
+      dispatch(setRandomMonster(randomMonster));
     } else {
       dispatch(setRandomMonster(null));
       dispatch(setWinner(null));
     }
-  }, [selectedMonster]);
+  }, [selectedMonster, monsters, dispatch]);
 
   const handleStartBattleClick = () => {
     if (selectedMonster && computerMonster) {
@@ -55,6 +53,12 @@ const BattleOfMonsters = () => {
     }
   };
 
+  const getWinnerText = () => {
+    if (!winner) return '';
+    if (winner.tie) return "It's a tie";
+    return winner.winner?.name || '';
+  };
+
   return (
     <PageContainer>
       <Title>Battle of Monsters</Title>
@@ -62,7 +66,7 @@ const BattleOfMonsters = () => {
       <MonstersList monsters={monsters} />
 
       {winner && (
-        <WinnerDisplay text={winner.winner?.name || (winner.tie ? "It's a tie" : '')} />
+        <WinnerDisplay text={getWinnerText()} />
       )}
 
       <BattleSection>
