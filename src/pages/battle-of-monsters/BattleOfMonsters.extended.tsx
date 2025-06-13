@@ -8,12 +8,20 @@ import { MonstersList } from '../../components/monsters-list/MonstersList.extend
 import { Title } from '../../components/title/Title';
 import { WinnerDisplay } from '../../components/winner-display/WinnerDisplay.extended';
 import { fetchMonstersData } from '../../reducers/monsters/monsters.actions';
-import { fetchBattleWins, setRandomMonster, setWinner } from '../../reducers/monsters/monsters.actions.extended';
+import {
+  fetchBattleWins,
+  setRandomMonster,
+  setWinner,
+} from '../../reducers/monsters/monsters.actions.extended';
 import {
   selectMonsters,
   selectSelectedMonster,
 } from '../../reducers/monsters/monsters.selectors';
-import { monsterWins, selectRandomMonster, getRandomMonster } from '../../reducers/monsters/monsters.selectors.extended';
+import {
+  monsterWins,
+  selectRandomMonster,
+  getRandomMonster,
+} from '../../reducers/monsters/monsters.selectors.extended';
 import {
   BattleSection,
   PageContainer,
@@ -65,9 +73,7 @@ const BattleOfMonsters = () => {
 
       <MonstersList monsters={monsters} />
 
-      {winner && (
-        <WinnerDisplay text={getWinnerText()} />
-      )}
+      {winner && <WinnerDisplay text={getWinnerText()} />}
 
       <BattleSection>
         <MonsterBattleCard

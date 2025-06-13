@@ -8,7 +8,7 @@
     "build": "react-scripts build",
     "test": "npx jest --coverage",
     "eject": "react-scripts eject",
-    "lint": "eslint .",
+    "lint": "eslint . --fix",
     "sonarqube": "sonar-scanner",
     "serve:data": "node data/server.js"
   },

@@ -1,7 +1,11 @@
 import { createReducer } from '@reduxjs/toolkit';
 import { Battle } from '../../models/interfaces/battle.interface';
 import { Monster } from '../../models/interfaces/monster.interface';
-import { fetchBattleWins, setRandomMonster, setWinner } from './monsters.actions.extended';
+import {
+  fetchBattleWins,
+  setRandomMonster,
+  setWinner,
+} from './monsters.actions.extended';
 
 interface MonsterState {
   selectRandomMonster: Monster | null;
