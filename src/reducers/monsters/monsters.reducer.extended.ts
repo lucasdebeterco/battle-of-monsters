@@ -3,8 +3,11 @@ import { Battle } from '../../models/interfaces/battle.interface';
 import { Monster } from '../../models/interfaces/monster.interface';
 import {
   fetchBattleWins,
+  fetchMonstersData,
+  selectMonster,
   setRandomMonster,
   setWinner,
+  startBattle,
 } from './monsters.actions.extended';
 
 interface MonsterState {
@@ -42,22 +45,22 @@ export const monstersReducer = createReducer(initialState, builder => {
       state.battles.push(action.payload);
       state.winner = action.payload;
     })
-    .addCase('monsters/selectMonster', (state, action) => {
+    .addCase(selectMonster, (state, action) => {
       state.selectedMonster = action.payload;
     })
-    .addCase('monsters/startBattle/fulfilled', (state, action) => {
+    .addCase(startBattle.fulfilled, (state, action) => {
       state.loading = false;
       state.battles.push(action.payload);
       state.winner = action.payload;
     })
-    .addCase('monsters/startBattle/pending', (state) => {
+    .addCase(startBattle.pending, state => {
       state.loading = true;
     })
-    .addCase('monsters/fetchMonstersData/fulfilled', (state, action) => {
+    .addCase(fetchMonstersData.fulfilled, (state, action) => {
       state.monsters = action.payload;
       state.loading = false;
     })
-    .addCase('monsters/fetchMonstersData/pending', (state) => {
+    .addCase(fetchMonstersData.pending, state => {
       state.loading = true;
     });
 });
