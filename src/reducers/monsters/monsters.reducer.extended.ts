@@ -11,7 +11,7 @@ interface MonsterState {
   monsters: Monster[];
   selectedMonster: Monster | null;
   battles: Battle[];
-  winner: Monster | null;
+  winner: Battle | null;
   loading: boolean;
 }
 
@@ -31,7 +31,7 @@ export const monstersReducer = createReducer(initialState, builder => {
     .addCase(setWinner, (state, action) => {
       if (action.payload) {
         state.battles.push(action.payload);
-        state.winner = action.payload.winner;
+        state.winner = action.payload;
       }
     })
     .addCase(fetchBattleWins.pending, (state) => {
@@ -40,7 +40,25 @@ export const monstersReducer = createReducer(initialState, builder => {
     .addCase(fetchBattleWins.fulfilled, (state, action) => {
       state.loading = false;
       state.battles.push(action.payload);
-      state.winner = action.payload.winner;
+      state.winner = action.payload;
+    })
+    .addCase('monsters/selectMonster', (state, action) => {
+      state.selectedMonster = action.payload;
+    })
+    .addCase('monsters/startBattle/fulfilled', (state, action) => {
+      state.loading = false;
+      state.battles.push(action.payload);
+      state.winner = action.payload;
+    })
+    .addCase('monsters/startBattle/pending', (state) => {
+      state.loading = true;
+    })
+    .addCase('monsters/fetchMonstersData/fulfilled', (state, action) => {
+      state.monsters = action.payload;
+      state.loading = false;
+    })
+    .addCase('monsters/fetchMonstersData/pending', (state) => {
+      state.loading = true;
     });
 });
 

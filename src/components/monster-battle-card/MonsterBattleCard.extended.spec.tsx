@@ -1,4 +1,3 @@
-
 import React from 'react';
 import '@testing-library/jest-dom';
 import { render, screen } from '@testing-library/react';
@@ -46,18 +45,19 @@ describe('MonsterBattleCardExtended', () => {
   });
 
   it('displays all monster stats correctly', () => {
-    const redDragon = monstersData.monsters[2]; // Red Dragon with high stats
+    const testMonster = monstersData.monsters[2]; // Red Dragon with HP: 90, Attack: 90, Defense: 80, Speed: 70
+
     render(
       <MonsterBattleCard 
-        monster={redDragon} 
+        monster={testMonster} 
         title="Red Dragon Card"
       />
     );
 
     expect(screen.getByText('Red Dragon Card')).toBeInTheDocument();
-    expect(screen.getByText('90')).toBeInTheDocument(); // HP
-    expect(screen.getByText('90')).toBeInTheDocument(); // Attack (will match first occurrence)
+    expect(screen.getAllByText('90')).toHaveLength(2); // HP and Attack both have value 90
     expect(screen.getByText('80')).toBeInTheDocument(); // Defense
+    expect(screen.getByText('70')).toBeInTheDocument(); // Speed
   });
 
   it('renders with monster stats display', () => {

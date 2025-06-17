@@ -13,7 +13,10 @@ const battle = async (players: Players): Promise<Battle> => {
   return response.json();
 };
 
-const getBattleWinner = async (monster1: Monster, monster2: Monster): Promise<Battle> => {
+const getBattleWinner = async (
+  monster1: Monster,
+  monster2: Monster,
+): Promise<Battle> => {
   const response = await fetch(`${API_URL}/battle`, {
     method: 'POST',
     headers: {
@@ -24,11 +27,11 @@ const getBattleWinner = async (monster1: Monster, monster2: Monster): Promise<Ba
       monster2,
     }),
   });
-  
+
   if (!response.ok) {
     throw new Error(`HTTP error! status: ${response.status}`);
   }
-  
+
   return response.json();
 };
 

@@ -1,7 +1,7 @@
 import { RootState } from '../../app/store';
 
 export const selectRandomMonster = (state: RootState) =>
-  state.monstersExtended.selectRandomMonster;
+  state.monstersExtended.selectedMonster;
 
 export const monsterWins = (state: RootState) => state.monstersExtended.winner;
 
