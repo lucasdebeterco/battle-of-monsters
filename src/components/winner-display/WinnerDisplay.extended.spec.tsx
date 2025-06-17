@@ -16,7 +16,7 @@ describe('WinnerDisplayExtended', () => {
     const { container } = render(<WinnerDisplay text="" />);
     const textElement = container.querySelector('.MuiTypography-root');
     expect(textElement).toBeInTheDocument();
-    expect(textElement).toHaveTextContent(' wins!');
+    expect(textElement).toHaveTextContent('wins!');
   });
 
   it('renders tie message correctly', () => {

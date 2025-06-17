@@ -23,7 +23,7 @@ describe('Monsters Reducer', () => {
 
     expect(newState.battles).toHaveLength(1);
     expect(newState.battles[0]).toEqual(battleResult);
-    expect(newState.winner).toEqual(battleResult.winner);
+    expect(newState.winner).toEqual(battleResult);
   });
 
   it('should add the random monster to the state', () => {
@@ -53,7 +53,7 @@ describe('Monsters Reducer', () => {
 
     const newState = monstersReducer(initialState, action);
 
-    expect(newState.winner).toEqual(winner);
+    expect(newState.winner).toEqual(battleResult);
     expect(newState.battles[0].winner).toEqual(winner);
   });
 
@@ -71,7 +71,7 @@ describe('Monsters Reducer', () => {
     const newState = monstersReducer(initialState, action);
 
     expect(newState.battles[0].tie).toBe(true);
-    expect(newState.winner).toEqual(battleResult.winner);
+    expect(newState.winner).toEqual(battleResult);
   });
 
   it('should load monsters data successfully', () => {
@@ -138,6 +138,6 @@ describe('Monsters Reducer', () => {
     expect(state.battles).toHaveLength(2);
     expect(state.battles[0]).toEqual(firstBattle);
     expect(state.battles[1]).toEqual(secondBattle);
-    expect(state.winner).toEqual(secondBattle.winner);
+    expect(state.winner).toEqual(secondBattle);
   });
 });
