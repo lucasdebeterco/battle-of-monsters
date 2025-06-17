@@ -1,0 +1,101 @@
+ FAIL  src/reducers/monsters/monsters.service.extended.spec.ts
+  ● Test suite failed to run
+                                                                                                                                                                                                                                                                                              
+    src/reducers/monsters/monsters.service.extended.spec.ts:28:49 - error TS2339: Property 'getBattleWinner' does not exist on type '{ battle: (players: Players) => Promise<Battle>; }'.                                                                                                     
+                                                                                                                                                                                                                                                                                              
+    28     const result = await MonsterServiceExtended.getBattleWinner(monster1, monster2);                                                                                                                                                                                                   
+                                                       ~~~~~~~~~~~~~~~                                                                                                                                                                                                                        
+    src/reducers/monsters/monsters.service.extended.spec.ts:58:49 - error TS2339: Property 'getBattleWinner' does not exist on type '{ battle: (players: Players) => Promise<Battle>; }'.                                                                                                     
+                                                                                                                                                                                                                                                                                              
+    58     const result = await MonsterServiceExtended.getBattleWinner(monster1, monster2);                                                                                                                                                                                                   
+                                                       ~~~~~~~~~~~~~~~                                                                                                                                                                                                                        
+    src/reducers/monsters/monsters.service.extended.spec.ts:73:30 - error TS2339: Property 'getBattleWinner' does not exist on type '{ battle: (players: Players) => Promise<Battle>; }'.                                                                                                     
+                                                                                                                                                                                                                                                                                              
+    73       MonsterServiceExtended.getBattleWinner(monster1, monster2)                                                                                                                                                                                                                       
+                                    ~~~~~~~~~~~~~~~
+    src/reducers/monsters/monsters.service.extended.spec.ts:88:30 - error TS2339: Property 'getBattleWinner' does not exist on type '{ battle: (players: Players) => Promise<Battle>; }'.
+
+    88       MonsterServiceExtended.getBattleWinner(monster1, monster2)
+                                    ~~~~~~~~~~~~~~~
+    src/reducers/monsters/monsters.service.extended.spec.ts:106:34 - error TS2339: Property 'getBattleWinner' does not exist on type '{ battle: (players: Players) => Promise<Battle>; }'.
+
+    106     await MonsterServiceExtended.getBattleWinner(monster1, monster2);
+                                         ~~~~~~~~~~~~~~~
+    src/reducers/monsters/monsters.service.extended.spec.ts:139:51 - error TS2339: Property 'getBattleWinner' does not exist on type '{ battle: (players: Players) => Promise<Battle>; }'.
+
+    139       const result = await MonsterServiceExtended.getBattleWinner(
+                                                          ~~~~~~~~~~~~~~~
+
+(node:7192) [DEP0040] DeprecationWarning: The `punycode` module is deprecated. Please use a userland alternative instead.
+(Use `node --trace-deprecation ...` to show where the warning was created)
+ FAIL  src/reducers/monsters/monsters.reducer.extended.spec.ts
+  ● Test suite failed to run
+                                                                                                                                                                                                                                                                                              
+    src/reducers/monsters/monsters.reducer.extended.spec.ts:2:10 - error TS2305: Module '"./monsters.reducer.extended"' has no exported member 'monstersReducer'.                                                                                                                             
+                                                                                                                                                                                                                                                                                              
+    2 import { monstersReducer, initialState } from './monsters.reducer.extended';                                                                                                                                                                                                            
+               ~~~~~~~~~~~~~~~                                                                                                                                                                                                                                                                
+    src/reducers/monsters/monsters.reducer.extended.spec.ts:2:27 - error TS2459: Module '"./monsters.reducer.extended"' declares 'initialState' locally, but it is not exported.                                                                                                              
+                                                                                                                                                                                                                                                                                              
+    2 import { monstersReducer, initialState } from './monsters.reducer.extended';                                                                                                                                                                                                            
+                                ~~~~~~~~~~~~                                                                                                                                                                                                                                                  
+                                                                                                                                                                                                                                                                                              
+      src/reducers/monsters/monsters.reducer.extended.ts:15:7                                                                                                                                                                                                                                 
+        15 const initialState: MonsterState = {                                                                                                                                                                                                                                               
+                 ~~~~~~~~~~~~
+        'initialState' is declared here.
+    src/reducers/monsters/monsters.reducer.extended.spec.ts:2:27 - error TS2459: Module '"./monsters.reducer.extended"' declares 'initialState' locally, but it is not exported.
+
+    2 import { monstersReducer, initialState } from './monsters.reducer.extended';
+                                ~~~~~~~~~~~~
+
+      src/reducers/monsters/monsters.reducer.extended.ts:15:7
+        15 const initialState: MonsterState = {
+                 ~~~~~~~~~~~~
+        'initialState' is declared here.
+    src/reducers/monsters/monsters.reducer.extended.spec.ts:3:10 - error TS2305: Module '"./monsters.actions.extended"' has no exported member 'fetchMonstersData'.
+
+    3 import { fetchMonstersData, selectMonster, startBattle } from './monsters.actions.extended';
+               ~~~~~~~~~~~~~~~~~
+    src/reducers/monsters/monsters.reducer.extended.spec.ts:3:29 - error TS2305: Module '"./monsters.actions.extended"' has no exported member 'selectMonster'.
+
+    3 import { fetchMonstersData, selectMonster, startBattle } from './monsters.actions.extended';
+                                  ~~~~~~~~~~~~~
+    src/reducers/monsters/monsters.reducer.extended.spec.ts:3:44 - error TS2305: Module '"./monsters.actions.extended"' has no exported member 'startBattle'.
+
+    3 import { fetchMonstersData, selectMonster, startBattle } from './monsters.actions.extended';
+                                                 ~~~~~~~~~~~
+
+ FAIL  src/components/monster-battle-card/MonsterBattleCard.extended.spec.tsx
+  ● Test suite failed to run
+
+    src/components/monster-battle-card/MonsterBattleCard.extended.spec.tsx:21:9 - error TS2322: Type '{ monster: { id: string; name: string; attack: number; defense: number; hp: number; speed: number; type: string; imageUrl: string; }; onClick: Mock<any, any, any>; }' is not assignable to type 'IntrinsicAttributes & MonsterCardProps'.
+      Property 'onClick' does not exist on type 'IntrinsicAttributes & MonsterCardProps'.
+
+    21         onClick={mockOnClick}
+               ~~~~~~~
+    src/components/monster-battle-card/MonsterBattleCard.extended.spec.tsx:36:9 - error TS2322: Type '{ monster: { id: string; name: string; attack: number; defense: number; hp: number; speed: number; type: string; imageUrl: string; }; onClick: Mock<any, any, any>; }' is not assignable to type 'IntrinsicAttributes & MonsterCardProps'.
+      Property 'onClick' does not exist on type 'IntrinsicAttributes & MonsterCardProps'.
+
+    36         onClick={mockOnClick}
+               ~~~~~~~
+    src/components/monster-battle-card/MonsterBattleCard.extended.spec.tsx:49:9 - error TS2322: Type '{ monster: { id: string; name: string; attack: number; defense: number; hp: number; speed: number; type: string; imageUrl: string; }; onClick: Mock<any, any, any>; }' is not assignable to type 'IntrinsicAttributes & MonsterCardProps'.
+      Property 'onClick' does not exist on type 'IntrinsicAttributes & MonsterCardProps'.
+
+    49         onClick={mockOnClick}
+               ~~~~~~~
+    src/components/monster-battle-card/MonsterBattleCard.extended.spec.tsx:64:9 - error TS2322: Type '{ monster: { id: string; name: string; attack: number; defense: number; hp: number; speed: number; type: string; imageUrl: string; }; onClick: Mock<any, any, any>; isSelected: boolean; }' is not assignable to type 'IntrinsicAttributes & MonsterCardProps'.
+      Property 'onClick' does not exist on type 'IntrinsicAttributes & MonsterCardProps'.
+
+    64         onClick={mockOnClick}
+               ~~~~~~~
+    src/components/monster-battle-card/MonsterBattleCard.extended.spec.tsx:77:9 - error TS2322: Type '{ monster: { id: string; name: string; attack: number; defense: number; hp: number; speed: number; type: string; imageUrl: string; }; onClick: Mock<any, any, any>; isSelected: boolean; }' is not assignable to type 'IntrinsicAttributes & MonsterCardProps'.
+      Property 'onClick' does not exist on type 'IntrinsicAttributes & MonsterCardProps'.
+
+    77         onClick={mockOnClick}
+               ~~~~~~~
+    src/components/monster-battle-card/MonsterBattleCard.extended.spec.tsx:91:9 - error TS2322: Type '{ monster: { id: string; name: string; attack: number; defense: number; hp: number; speed: number; type: string; imageUrl: string; }; onClick: Mock<any, any, any>; }' is not assignable to type 'IntrinsicAttributes & MonsterCardProps'.
+      Property 'onClick' does not exist on type 'IntrinsicAttributes & MonsterCardProps'.
+
+    91         onClick={mockOnClick}
+               ~~~~~~~
