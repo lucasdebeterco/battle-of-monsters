@@ -1,0 +1,403 @@
+ FAIL  src/components/winner-display/WinnerDisplay.extended.spec.tsx
+  ● Test suite failed to run
+
+    src/components/winner-display/WinnerDisplay.extended.spec.tsx:2:8 - error TS2300: Duplicate identifier 'React'.
+
+    2 import React from 'react';
+             ~~~~~
+    src/components/winner-display/WinnerDisplay.extended.spec.tsx:40:8 - error TS2300: Duplicate identifier 'React'.
+
+    40 import React from 'react';
+              ~~~~~
+    src/components/winner-display/WinnerDisplay.extended.spec.tsx:4:10 - error TS2300: Duplicate identifier 'render'.
+
+    4 import { render, screen } from '@testing-library/react';
+               ~~~~~~
+    src/components/winner-display/WinnerDisplay.extended.spec.tsx:42:10 - error TS2300: Duplicate identifier 'render'.
+
+    42 import { render, screen } from '@testing-library/react';
+                ~~~~~~
+    src/components/winner-display/WinnerDisplay.extended.spec.tsx:4:18 - error TS2300: Duplicate identifier 'screen'.
+
+    4 import { render, screen } from '@testing-library/react';
+                       ~~~~~~
+    src/components/winner-display/WinnerDisplay.extended.spec.tsx:42:18 - error TS2300: Duplicate identifier 'screen'.
+
+    42 import { render, screen } from '@testing-library/react';
+                        ~~~~~~
+    src/components/winner-display/WinnerDisplay.extended.spec.tsx:5:10 - error TS2300: Duplicate identifier 'WinnerDisplay'.
+
+    5 import { WinnerDisplay } from './WinnerDisplay.extended';
+               ~~~~~~~~~~~~~
+    src/components/winner-display/WinnerDisplay.extended.spec.tsx:43:10 - error TS2300: Duplicate identifier 'WinnerDisplay'.
+
+    43 import { WinnerDisplay } from './WinnerDisplay.extended';
+                ~~~~~~~~~~~~~
+    src/components/winner-display/WinnerDisplay.extended.spec.tsx:55:35 - error TS2741: Property 'text' is missing in type '{}' but required in type 'Props'.
+
+    55     const { container } = render(<WinnerDisplay />);
+                                         ~~~~~~~~~~~~~
+
+      src/components/winner-display/WinnerDisplay.extended.tsx:5:3
+        5   text: string;
+            ~~~~
+        'text' is declared here.
+
+(node:14232) [DEP0040] DeprecationWarning: The `punycode` module is deprecated. Please use a userland alternative instead.
+(Use `node --trace-deprecation ...` to show where the warning was created)
+(node:8104) [DEP0040] DeprecationWarning: The `punycode` module is deprecated. Please use a userland alternative instead.
+(Use `node --trace-deprecation ...` to show where the warning was created)
+ PASS  src/components/monster-battle-card/MonsterBattleCard.spec.tsx (42.054 s)
+(node:20536) [DEP0040] DeprecationWarning: The `punycode` module is deprecated. Please use a userland alternative instead.
+(Use `node --trace-deprecation ...` to show where the warning was created)
+ PASS  src/components/winner-display/WinnerDisplay.spec.tsx (42.625 s)
+ FAIL  src/pages/battle-of-monsters/BattleOfMonsters.spec.tsx
+  ● Test suite failed to run
+
+    src/pages/battle-of-monsters/BattleOfMonsters.extended.tsx:66:16 - error TS2339: Property 'tie' does not exist on type 'Monster'.
+
+    66     if (winner.tie) return "It's a tie";
+                      ~~~
+    src/pages/battle-of-monsters/BattleOfMonsters.extended.tsx:67:19 - error TS2339: Property 'winner' does not exist on type 'Monster'.
+
+    67     return winner.winner?.name || '';
+                         ~~~~~~
+
+(node:20980) [DEP0040] DeprecationWarning: The `punycode` module is deprecated. Please use a userland alternative instead.
+(Use `node --trace-deprecation ...` to show where the warning was created)                                                                                                                                                                                                                    
+ PASS  src/reducers/monsters/monsters.service.extended.spec.ts (25.021 s)                                                                                                                                                                                                                     
+ FAIL  src/reducers/monsters/monsters.reducer.extended.spec.ts (25.686 s)
+  ● Monsters Reducer › should change the battle on action fulfilled
+
+    expect(received).toHaveLength(expected)
+
+    Expected length: 1
+    Received length: 0
+    Received array:  []
+
+      22 |     const newState = monstersReducer(initialState, action);
+      23 |
+    > 24 |     expect(newState.battles).toHaveLength(1);
+         |                              ^
+      25 |     expect(newState.battles[0]).toEqual(battleResult);
+      26 |     expect(newState.winner).toEqual(battleResult.winner);
+      27 |   });
+
+      at Object.<anonymous> (src/reducers/monsters/monsters.reducer.extended.spec.ts:24:30)
+
+  ● Monsters Reducer › should add the random monster to the state
+
+    expect(received).toEqual(expected) // deep equality
+
+    Expected: {"attack": 50, "defense": 20, "hp": 80, "id": "monster-2", "imageUrl": "/images/old-shark.png", "name": "Old Shark", "speed": 90, "type": "Type"}
+    Received: null
+
+      37 |     const newState = monstersReducer(initialState, action);
+      38 |
+    > 39 |     expect(newState.selectedMonster).toEqual(selectedMonster);
+         |                                      ^
+      40 |   });
+      41 |
+      42 |   it('should add the winner to the state', () => {
+
+      at Object.<anonymous> (src/reducers/monsters/monsters.reducer.extended.spec.ts:39:38)
+
+  ● Monsters Reducer › should add the winner to the state
+
+    expect(received).toEqual(expected) // deep equality
+
+    Expected: {"attack": 90, "defense": 80, "hp": 90, "id": "monster-3", "imageUrl": "/images/red-dragon.png", "name": "Red Dragon", "speed": 70, "type": "Type"}
+    Received: null
+
+      54 |     const newState = monstersReducer(initialState, action);
+      55 |
+    > 56 |     expect(newState.winner).toEqual(winner);
+         |                             ^
+      57 |     expect(newState.battles[0].winner).toEqual(winner);
+      58 |   });
+      59 |
+
+      at Object.<anonymous> (src/reducers/monsters/monsters.reducer.extended.spec.ts:56:29)
+
+  ● Monsters Reducer › should handle tie battles correctly
+
+    TypeError: Cannot read properties of undefined (reading 'tie')
+
+      71 |     const newState = monstersReducer(initialState, action);
+      72 |
+    > 73 |     expect(newState.battles[0].tie).toBe(true);
+         |                                ^
+      74 |     expect(newState.winner).toEqual(battleResult.winner);
+      75 |   });
+      76 |
+
+      at Object.<anonymous> (src/reducers/monsters/monsters.reducer.extended.spec.ts:73:32)
+
+  ● Monsters Reducer › should load monsters data successfully
+
+    expect(received).toEqual(expected) // deep equality
+
+    - Expected  - 52
+    + Received  +  1
+
+    - Array [
+    -   Object {
+    -     "attack": 60,
+    -     "defense": 40,
+    -     "hp": 10,
+    -     "id": "monster-1",
+    -     "imageUrl": "/images/dead-unicorn.png",
+    -     "name": "Dead Unicorn",
+    -     "speed": 80,
+    -     "type": "Type",
+    -   },
+    -   Object {
+    -     "attack": 50,
+    -     "defense": 20,
+    -     "hp": 80,
+    -     "id": "monster-2",
+    -     "imageUrl": "/images/old-shark.png",
+    -     "name": "Old Shark",
+    -     "speed": 90,
+    -     "type": "Type",
+    -   },
+    -   Object {
+    -     "attack": 90,
+    -     "defense": 80,
+    -     "hp": 90,
+    -     "id": "monster-3",
+    -     "imageUrl": "/images/red-dragon.png",
+    -     "name": "Red Dragon",
+    -     "speed": 70,
+    -     "type": "Type",
+    -   },
+    -   Object {
+    -     "attack": 50,
+    -     "defense": 40,
+    -     "hp": 80,
+    -     "id": "monster-4",
+    -     "imageUrl": "/images/robot-bear.png",
+    -     "name": "Robot Bear",
+    -     "speed": 60,
+    -     "type": "Type",
+    -   },
+    -   Object {
+    -     "attack": 80,
+    -     "defense": 20,
+    -     "hp": 70,
+    -     "id": "monster-5",
+    -     "imageUrl": "/images/angry-snake.png",
+    -     "name": "Angry Snake",
+    -     "speed": 80,
+    -     "type": "Type",
+    -   },
+    - ]
+    + Array []
+
+      83 |     const newState = monstersReducer(initialState, action);
+      84 |
+    > 85 |     expect(newState.monsters).toEqual(monstersData.monsters);
+         |                               ^
+      86 |     expect(newState.monsters).toHaveLength(5);
+      87 |   });
+      88 |
+
+      at Object.<anonymous> (src/reducers/monsters/monsters.reducer.extended.spec.ts:85:31)
+
+  ● Monsters Reducer › should handle loading state for fetch monsters
+
+    expect(received).toBe(expected) // Object.is equality
+
+    Expected: true
+    Received: false
+
+      94 |     const newState = monstersReducer(initialState, action);
+      95 |
+    > 96 |     expect(newState.loading).toBe(true);
+         |                              ^
+      97 |   });
+      98 |
+      99 |   it('should handle loading state for battle', () => {
+
+      at Object.<anonymous> (src/reducers/monsters/monsters.reducer.extended.spec.ts:96:30)
+
+  ● Monsters Reducer › should handle loading state for battle
+
+    expect(received).toBe(expected) // Object.is equality
+
+    Expected: true
+    Received: false
+
+      104 |     const newState = monstersReducer(initialState, action);
+      105 |
+    > 106 |     expect(newState.loading).toBe(true);
+          |                              ^
+      107 |   });
+      108 |
+      109 |   it('should handle multiple battles in sequence', () => {
+
+      at Object.<anonymous> (src/reducers/monsters/monsters.reducer.extended.spec.ts:106:30)
+
+  ● Monsters Reducer › should handle multiple battles in sequence
+
+    expect(received).toHaveLength(expected)
+
+    Expected length: 2
+    Received length: 0
+    Received array:  []
+
+      136 |     state = monstersReducer(state, secondAction);
+      137 |
+    > 138 |     expect(state.battles).toHaveLength(2);
+          |                           ^
+      139 |     expect(state.battles[0]).toEqual(firstBattle);
+      140 |     expect(state.battles[1]).toEqual(secondBattle);
+      141 |     expect(state.winner).toEqual(secondBattle.winner);
+
+      at Object.<anonymous> (src/reducers/monsters/monsters.reducer.extended.spec.ts:138:27)
+
+ FAIL  src/components/monster-battle-card/MonsterBattleCard.extended.spec.tsx (16.177 s)
+  ● MonsterBattleCardExtended › displays all monster stats correctly
+
+    TestingLibraryElementError: Found multiple elements with the text: 90
+
+    Here are the matching elements:
+
+    Ignored nodes: comments, <script />, <style />
+    <span>
+      90
+    </span>
+
+    Ignored nodes: comments, <script />, <style />
+    <span>
+      90
+    </span>
+
+    (If this is intentional, then use the `*AllBy*` variant of the query (like `queryAllByText`, `getAllByText`, or `findAllByText`)).
+
+    Ignored nodes: comments, <script />, <style />
+    <body>
+      <div>
+        <div
+          class="MuiPaper-root MuiPaper-elevation MuiPaper-rounded MuiPaper-elevation1 MuiCard-root css-rgk2er-MuiPaper-root-MuiCard-root"
+        >
+          <p
+            class="MuiTypography-root MuiTypography-body1 css-18ziogg-MuiTypography-root"
+          >
+            Red Dragon Card
+          </p>
+          <img
+            alt="Red Dragon"
+            src="/images/red-dragon.png"
+            style="width: 283px; height: 178px; border-radius: 7px;"
+          />
+          <div
+            style="margin-top: 15px;"
+          >
+            <div
+              style="display: flex; justify-content: space-between; margin-bottom: 5px;"
+            >
+              <span>
+                HP
+              </span>
+              <span>
+                90
+              </span>
+            </div>
+            <span
+              aria-valuemax="100"
+              aria-valuemin="0"
+              aria-valuenow="90"
+              class="MuiLinearProgress-root MuiLinearProgress-colorPrimary MuiLinearProgress-determinate css-scd5f7-MuiLinearProgress-root"
+              role="progressbar"
+            >
+              <span
+                class="MuiLinearProgress-bar MuiLinearProgress-barColorPrimary MuiLinearProgress-bar1Determinate css-5xe99f-MuiLinearProgress-bar1"
+                style="transform: translateX(-10%);"
+              />
+            </span>
+            <div
+              style="display: flex; justify-content: space-between; margin-bottom: 5px; margin-top: 15px;"
+            >
+              <span>
+                Attack
+              </span>
+              <span>
+                90
+              </span>
+            </div>
+            <span
+              aria-valuemax="100"
+              aria-valuemin="0"
+              aria-valuenow="90"
+              class="MuiLinearProgress-root MuiLinearProgress-colorPrimary MuiLinearProgress-determinate css-scd5f7-MuiLinearProgress-root"
+              role="progressbar"
+            >
+              <span
+                class="MuiLinearProgress-bar MuiLinearProgress-barColorPrimary MuiLinearProgress-bar1Determinate css-5xe99f-MuiLinearProgress-bar1"
+                style="transform: translateX(-10%);"
+              />
+            </span>
+            <div
+              style="display: flex; justify-content: space-between; margin-bottom: 5px; margin-top: 15px;"
+            >
+              <span>
+                Defense
+              </span>
+              <span>
+                80
+              </span>
+            </div>
+            <span
+              aria-valuemax="100"
+              aria-valuemin="0"
+              aria-valuenow="80"
+              class="MuiLinearProgress-root MuiLinearProgress-colorPrimary MuiLinearProgress-determinate css-scd5f7-MuiLinearProgress-root"
+              role="progressbar"
+            >
+              <span
+                class="MuiLinearProgress-bar MuiLinearProgress-barColorPrimary MuiLinearProgress-bar1Determinate css-5xe99f-MuiLinearProgress-bar1"
+                style="transform: translateX(-20%);"
+              />
+            </span>
+            <div
+              style="display: flex; justify-content: space-between; margin-bottom: 5px; margin-top: 15px;"
+            >
+              <span>
+                Speed
+              </span>
+              <span>
+                70
+              </span>
+            </div>
+            <span
+              aria-valuemax="100"
+              aria-valuemin="0"
+              aria-valuenow="70"
+              class="MuiLinearProgress-root MuiLinearProgress-colorPrimary MuiLinearProgress-determinate css-scd5f7-MuiLinearProgress-root"
+              role="progressbar"
+            >
+              <span
+                class="MuiLinearProgress-bar MuiLinearProgress-barColorPrimary MuiLinearProgress-bar1Determinate css-5xe99f-MuiLinearProgress-bar1"
+                style="transform: translateX(-30%);"
+              />
+            </span>
+          </div>
+        </div>
+      </div>
+    </body>
+
+      56 |
+      57 |     expect(screen.getByText('Red Dragon Card')).toBeInTheDocument();
+    > 58 |     expect(screen.getByText('90')).toBeInTheDocument(); // HP
+         |                   ^
+      59 |     expect(screen.getByText('90')).toBeInTheDocument(); // Attack (will match first occurrence)
+      60 |     expect(screen.getByText('80')).toBeInTheDocument(); // Defense
+      61 |   });
+
+      at Object.getElementError (node_modules/@testing-library/dom/dist/config.js:40:19)
+      at getElementError (node_modules/@testing-library/dom/dist/query-helpers.js:25:35)
+      at getElementError (node_modules/@testing-library/dom/dist/query-helpers.js:29:10)
+      at getMultipleElementsFoundError (node_modules/@testing-library/dom/dist/query-helpers.js:66:13)
+      at query (node_modules/@testing-library/dom/dist/query-helpers.js:111:19)
+      at Object.<anonymous> (src/components/monster-battle-card/MonsterBattleCard.extended.spec.tsx:58:19)
