@@ -8,24 +8,40 @@ import {
 } from './monsters.actions.extended';
 
 interface MonsterState {
-  selectRandomMonster: Monster | null;
-  winner: Battle | null;
+  monsters: Monster[];
+  selectedMonster: Monster | null;
+  battles: Battle[];
+  winner: Monster | null;
+  loading: boolean;
 }
 
-const initialState: MonsterState = {
-  selectRandomMonster: null,
+export const initialState: MonsterState = {
+  monsters: [],
+  selectedMonster: null,
+  battles: [],
   winner: null,
+  loading: false,
 };
 
-export const monstersReducerExtended = createReducer(initialState, builder => {
+export const monstersReducer = createReducer(initialState, builder => {
   builder
     .addCase(setRandomMonster, (state, action) => {
-      state.selectRandomMonster = action.payload;
+      state.selectedMonster = action.payload;
     })
     .addCase(setWinner, (state, action) => {
-      state.winner = action.payload;
+      if (action.payload) {
+        state.battles.push(action.payload);
+        state.winner = action.payload.winner;
+      }
+    })
+    .addCase(fetchBattleWins.pending, (state) => {
+      state.loading = true;
     })
     .addCase(fetchBattleWins.fulfilled, (state, action) => {
-      state.winner = action.payload;
+      state.loading = false;
+      state.battles.push(action.payload);
+      state.winner = action.payload.winner;
     });
 });
+
+export const monstersReducerExtended = monstersReducer;
