@@ -37,7 +37,7 @@ export const monstersReducer = createReducer(initialState, builder => {
         state.winner = action.payload;
       }
     })
-    .addCase(fetchBattleWins.pending, (state) => {
+    .addCase(fetchBattleWins.pending, state => {
       state.loading = true;
     })
     .addCase(fetchBattleWins.fulfilled, (state, action) => {

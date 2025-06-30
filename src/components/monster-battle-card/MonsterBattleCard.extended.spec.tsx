@@ -8,26 +8,18 @@ describe('MonsterBattleCardExtended', () => {
   const testMonster = monstersData.monsters[0];
 
   it('renders the monster card correctly with a monster', () => {
-    render(
-      <MonsterBattleCard 
-        monster={testMonster} 
-        title="Test Monster"
-      />
-    );
+    render(<MonsterBattleCard monster={testMonster} title="Test Monster" />);
 
     expect(screen.getByText('Test Monster')).toBeInTheDocument();
     expect(screen.getByText(testMonster.hp.toString())).toBeInTheDocument();
     expect(screen.getByText(testMonster.attack.toString())).toBeInTheDocument();
-    expect(screen.getByText(testMonster.defense.toString())).toBeInTheDocument();
+    expect(
+      screen.getByText(testMonster.defense.toString()),
+    ).toBeInTheDocument();
   });
 
   it('displays monster image correctly', () => {
-    render(
-      <MonsterBattleCard 
-        monster={testMonster} 
-        title="Test Monster"
-      />
-    );
+    render(<MonsterBattleCard monster={testMonster} title="Test Monster" />);
 
     const image = screen.getByAltText(testMonster.name);
     expect(image).toBeInTheDocument();
@@ -35,11 +27,7 @@ describe('MonsterBattleCardExtended', () => {
   });
 
   it('renders correctly with title only', () => {
-    render(
-      <MonsterBattleCard 
-        title="No Monster Selected"
-      />
-    );
+    render(<MonsterBattleCard title="No Monster Selected" />);
 
     expect(screen.getByText('No Monster Selected')).toBeInTheDocument();
   });
@@ -47,12 +35,7 @@ describe('MonsterBattleCardExtended', () => {
   it('displays all monster stats correctly', () => {
     const testMonster = monstersData.monsters[2]; // Red Dragon with HP: 90, Attack: 90, Defense: 80, Speed: 70
 
-    render(
-      <MonsterBattleCard 
-        monster={testMonster} 
-        title="Red Dragon Card"
-      />
-    );
+    render(<MonsterBattleCard monster={testMonster} title="Red Dragon Card" />);
 
     expect(screen.getByText('Red Dragon Card')).toBeInTheDocument();
     expect(screen.getAllByText('90')).toHaveLength(2); // HP and Attack both have value 90
@@ -61,12 +44,7 @@ describe('MonsterBattleCardExtended', () => {
   });
 
   it('renders with monster stats display', () => {
-    render(
-      <MonsterBattleCard 
-        monster={testMonster} 
-        title="Monster Stats"
-      />
-    );
+    render(<MonsterBattleCard monster={testMonster} title="Monster Stats" />);
 
     // Check for HP label and value display structure
     expect(screen.getByText('HP')).toBeInTheDocument();

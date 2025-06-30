@@ -1,4 +1,3 @@
-
 import { MonsterServiceExtended } from './monsters.service.extended';
 import { API_URL } from '../../constants/env';
 import monstersData from '../../../data/monsters.json';
@@ -14,7 +13,7 @@ describe('Monsters Service Extended', () => {
   it('should get the winner of the battle of monsters', async () => {
     const mockBattleResult = {
       winner: monstersData.monsters[0],
-      tie: false
+      tie: false,
     };
 
     (fetch as jest.MockedFunction<typeof fetch>).mockResolvedValueOnce({
@@ -25,7 +24,10 @@ describe('Monsters Service Extended', () => {
     const monster1 = monstersData.monsters[0];
     const monster2 = monstersData.monsters[1];
 
-    const result = await MonsterServiceExtended.getBattleWinner(monster1, monster2);
+    const result = await MonsterServiceExtended.getBattleWinner(
+      monster1,
+      monster2,
+    );
 
     expect(fetch).toHaveBeenCalledWith(`${API_URL}/battle`, {
       method: 'POST',
@@ -44,7 +46,7 @@ describe('Monsters Service Extended', () => {
   it('should handle battle tie correctly', async () => {
     const mockTieResult = {
       winner: monstersData.monsters[2],
-      tie: true
+      tie: true,
     };
 
     (fetch as jest.MockedFunction<typeof fetch>).mockResolvedValueOnce({
@@ -55,7 +57,10 @@ describe('Monsters Service Extended', () => {
     const monster1 = monstersData.monsters[2];
     const monster2 = monstersData.monsters[3];
 
-    const result = await MonsterServiceExtended.getBattleWinner(monster1, monster2);
+    const result = await MonsterServiceExtended.getBattleWinner(
+      monster1,
+      monster2,
+    );
 
     expect(result.tie).toBe(true);
     expect(result.winner).toEqual(monstersData.monsters[2]);
@@ -63,14 +68,14 @@ describe('Monsters Service Extended', () => {
 
   it('should handle API errors gracefully', async () => {
     (fetch as jest.MockedFunction<typeof fetch>).mockRejectedValueOnce(
-      new Error('API Error')
+      new Error('API Error'),
     );
 
     const monster1 = monstersData.monsters[0];
     const monster2 = monstersData.monsters[1];
 
     await expect(
-      MonsterServiceExtended.getBattleWinner(monster1, monster2)
+      MonsterServiceExtended.getBattleWinner(monster1, monster2),
     ).rejects.toThrow('API Error');
   });
 
@@ -85,14 +90,14 @@ describe('Monsters Service Extended', () => {
     const monster2 = monstersData.monsters[1];
 
     await expect(
-      MonsterServiceExtended.getBattleWinner(monster1, monster2)
+      MonsterServiceExtended.getBattleWinner(monster1, monster2),
     ).rejects.toThrow();
   });
 
   it('should send correct battle data format', async () => {
     const mockBattleResult = {
       winner: monstersData.monsters[4],
-      tie: false
+      tie: false,
     };
 
     (fetch as jest.MockedFunction<typeof fetch>).mockResolvedValueOnce({
@@ -120,15 +125,24 @@ describe('Monsters Service Extended', () => {
 
   it('should handle different monster combinations', async () => {
     const testCases = [
-      { monster1: monstersData.monsters[0], monster2: monstersData.monsters[1] },
-      { monster1: monstersData.monsters[2], monster2: monstersData.monsters[3] },
-      { monster1: monstersData.monsters[4], monster2: monstersData.monsters[0] },
+      {
+        monster1: monstersData.monsters[0],
+        monster2: monstersData.monsters[1],
+      },
+      {
+        monster1: monstersData.monsters[2],
+        monster2: monstersData.monsters[3],
+      },
+      {
+        monster1: monstersData.monsters[4],
+        monster2: monstersData.monsters[0],
+      },
     ];
 
     for (const testCase of testCases) {
       const mockResult = {
         winner: testCase.monster1,
-        tie: false
+        tie: false,
       };
 
       (fetch as jest.MockedFunction<typeof fetch>).mockResolvedValueOnce({
@@ -137,8 +151,8 @@ describe('Monsters Service Extended', () => {
       } as Response);
 
       const result = await MonsterServiceExtended.getBattleWinner(
-        testCase.monster1, 
-        testCase.monster2
+        testCase.monster1,
+        testCase.monster2,
       );
 
       expect(result.winner).toEqual(testCase.monster1);

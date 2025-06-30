@@ -1,22 +1,27 @@
-
 import { monstersReducer, initialState } from './monsters.reducer.extended';
-import { fetchMonstersData, selectMonster, startBattle } from './monsters.actions.extended';
+import {
+  fetchMonstersData,
+  selectMonster,
+  startBattle,
+} from './monsters.actions.extended';
 import monstersData from '../../../data/monsters.json';
 
 describe('Monsters Reducer', () => {
   it('should return the initial state', () => {
-    expect(monstersReducer(undefined, { type: 'unknown' })).toEqual(initialState);
+    expect(monstersReducer(undefined, { type: 'unknown' })).toEqual(
+      initialState,
+    );
   });
 
   it('should change the battle on action fulfilled', () => {
     const battleResult = {
       winner: monstersData.monsters[0],
-      tie: false
+      tie: false,
     };
 
     const action = {
       type: startBattle.fulfilled.type,
-      payload: battleResult
+      payload: battleResult,
     };
 
     const newState = monstersReducer(initialState, action);
@@ -28,10 +33,10 @@ describe('Monsters Reducer', () => {
 
   it('should add the random monster to the state', () => {
     const selectedMonster = monstersData.monsters[1];
-    
+
     const action = {
       type: selectMonster.type,
-      payload: selectedMonster
+      payload: selectedMonster,
     };
 
     const newState = monstersReducer(initialState, action);
@@ -43,12 +48,12 @@ describe('Monsters Reducer', () => {
     const winner = monstersData.monsters[2];
     const battleResult = {
       winner: winner,
-      tie: false
+      tie: false,
     };
 
     const action = {
       type: startBattle.fulfilled.type,
-      payload: battleResult
+      payload: battleResult,
     };
 
     const newState = monstersReducer(initialState, action);
@@ -60,12 +65,12 @@ describe('Monsters Reducer', () => {
   it('should handle tie battles correctly', () => {
     const battleResult = {
       winner: monstersData.monsters[0],
-      tie: true
+      tie: true,
     };
 
     const action = {
       type: startBattle.fulfilled.type,
-      payload: battleResult
+      payload: battleResult,
     };
 
     const newState = monstersReducer(initialState, action);
@@ -77,7 +82,7 @@ describe('Monsters Reducer', () => {
   it('should load monsters data successfully', () => {
     const action = {
       type: fetchMonstersData.fulfilled.type,
-      payload: monstersData.monsters
+      payload: monstersData.monsters,
     };
 
     const newState = monstersReducer(initialState, action);
@@ -88,7 +93,7 @@ describe('Monsters Reducer', () => {
 
   it('should handle loading state for fetch monsters', () => {
     const action = {
-      type: fetchMonstersData.pending.type
+      type: fetchMonstersData.pending.type,
     };
 
     const newState = monstersReducer(initialState, action);
@@ -98,7 +103,7 @@ describe('Monsters Reducer', () => {
 
   it('should handle loading state for battle', () => {
     const action = {
-      type: startBattle.pending.type
+      type: startBattle.pending.type,
     };
 
     const newState = monstersReducer(initialState, action);
@@ -112,12 +117,12 @@ describe('Monsters Reducer', () => {
     // First battle
     const firstBattle = {
       winner: monstersData.monsters[0],
-      tie: false
+      tie: false,
     };
 
     const firstAction = {
       type: startBattle.fulfilled.type,
-      payload: firstBattle
+      payload: firstBattle,
     };
 
     state = monstersReducer(state, firstAction);
@@ -125,12 +130,12 @@ describe('Monsters Reducer', () => {
     // Second battle
     const secondBattle = {
       winner: monstersData.monsters[1],
-      tie: true
+      tie: true,
     };
 
     const secondAction = {
       type: startBattle.fulfilled.type,
-      payload: secondBattle
+      payload: secondBattle,
     };
 
     state = monstersReducer(state, secondAction);
